@@ -13,7 +13,7 @@ Each group member should use this document to briefly describe themselves in a p
 ## for the project. Click the green "play" button in the upper right to run this
 ## code.
 knitr::opts_chunk$set(echo = TRUE)
-load("input/gss_mens_attitudes.RData")
+load("input/nlsy.RData")
 #check for packages
 if(!require("texreg")) {
     install.packages("texreg", repos="https://cloud.r-project.org")

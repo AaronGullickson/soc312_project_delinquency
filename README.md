@@ -16,9 +16,9 @@ Throughout the remainder of the term, we will be working in groups to build up a
 
 You are free to organize your group as you like, but I recommend that you nominate one person to be the organizational lead for each assignment. This person will be responsible for handling conflicts, knitting final results, and communicating completion to me. You can rotate this responsibility among group members if you like.
 
-## Research Topic: Men's attitudes toward women's equality by birth cohort
+## Research Topic: Hard times in childhood and adolescent deliquency
 
-We will use data from the General Social Survey (GSS) to analyze how men's attitude toward women's equality have changed across birth cohorts. In addition, we will explore how changes across birth cohort vary by sexuality. We will work with the 2012 and 2014 GSS data. A subset of this data with the relevant variables for the analyis can be found in the `input` directory of this repository. A README file in the `input` directory describes the data and the variables in more detail.
+We will use data from the National Longitudinal Survey of Youth 1997 (NLSY97) to analyze how experiences of hardship in a person's childhood are related to delinquency and criminal behavior in adolescence. In addition, we will explore how this relationship varies by urban/rural status (urbanicity). A subset of this data with the relevant variables for the analyis can be found in the `input` directory of this repository. A README file in the `input` directory describes the data and the variables in more detail.
 
 ## Technical Details
 

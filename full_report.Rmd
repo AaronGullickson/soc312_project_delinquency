@@ -1,0 +1,62 @@
+---
+title: "Full Report on Popularity and Substance Use among Adolescents"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+## This code block will load the data and check for packages that you will need
+## for the project. Click the green "play" button in the upper right to run this
+## code.
+knitr::opts_chunk$set(echo = TRUE)
+load("input/gss_mens_attitudes.RData")
+#check for packages
+if(!require("texreg")) {
+    install.packages("texreg", repos="https://cloud.r-project.org")
+}
+if(!require("tinytex")) {
+    install.packages("tinytex", repos="https://cloud.r-project.org")
+}
+if(!require("rmarkdown")) {
+    install.packages("rmarkdown", repos="https://cloud.r-project.org")
+}
+```
+
+## Introduction
+
+State the research question and why it is important to study in your own words.
+
+## Data
+
+Describe the dataset being used in your own words. Describe and show the distributions of key variables in the analysis. You can copy and past the code chunk below to produce figures. Be sure to change the `figuretemplate` name in each code chunk to a unique name or you will get a duplicate naming error.
+
+```{r figuretemplate, echo=FALSE, fig.cap="A Caption"}
+#code (e.g. plot, hist, barplot, boxplot) to produce the figure
+```
+
+## Results
+
+Describe the results of the full multivariate regression models. You can use the code chunk template below to place the regression results into a nice format using the stargazer package.
+```{r regression_template, echo=FALSE, results='asis'}
+#make some models
+model1 <- lm()
+model2 <- lm()
+model3 <- lm()
+
+#change type to "text" for inline test output, change back to "html" for knitting to html
+stargazer(model1, model2, model3,
+          type="html",
+          keep.stat=c("n","rsq"),
+          star.cutoffs = c(0.05,0.01,0.001),
+          #covariate.labels = c("Covariate labels here"), #uncomment to add nice labels
+          dep.var.labels.include = FALSE,
+          dep.var.caption="Friend nominations",
+          title = "Your caption here",
+          notes.append=TRUE,
+          notes.align="l",
+          notes=c("Some notes","Some more notes"),
+          header=FALSE)
+```
+
+## Conclusions
+
+A paragraph to summarize your results and what you draw from these results regarding your original research question.

@@ -1,0 +1,7 @@
+**/*.pdf
+**/*.html
+.Rproj.user
+**/.Rhistory
+**/.RData
+.Ruserdata
+.Rapp.history

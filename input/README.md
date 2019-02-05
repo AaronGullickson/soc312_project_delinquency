@@ -1,24 +1,18 @@
-# National Longitudinal Study of Adolescent to Adult Health
+# General Social Survey
 
-The data we are using comes from the [National Longitudinal Study of Adolescent to Adult Health](http://www.cpc.unc.edu/projects/addhealth) (Add Health), conducted by the Carolina Population Center at UNC-Chapel Hill and supported by a grant from the National Institute of Child Health and Human Development. The first wave of the study surveyed adolescents between 7th and 12th grade in school in the 1994-95 school year. These respondents were then re-interviewed in three later waves, and there is currently a fifth wave of data being collected right now. This re-interviewing allows researchers to follow these respondents over time as they have grown from adolescents into full adulthood. This is what makes the study *longitudinal*.
+The data we are using comes from the [General Social Survey](http://gss.norc.org/About-The-GSS) (GSS), conducted by the National Opinion Research Council. The GSS is a nationally representative survey of the US adult population that is conducted every two years.
 
-We will only be using the publicly available Wave I data from when these respondents were adolescents in 1994-95. One of the particularly valuable features of the Add Health survey is that many respondents were in the "saturation sample" which sampled *all* students at 16 schools. In this saturation sample, students were asked about who were their friends and sexual partners, which allows researchers to construct network maps of adolescent social systems. 
+We will only be using data from the 2012 and 2014 rounds of the GSS. I created an [extract](https://gssdataexplorer.norc.org/projects/56025) of the full GSS data using the GSS Explorer web application. I then subset the data to only include respondents who identified as male. Here is a full description of all variables in the dataset that we will use.
 
-We will use a various basic measure of that network that estimates students' popularity. This measure, which is called "in degree" in the network analysis literature, measures the number of times a student was nominated as a friend by other students in the school. We will treat it as a simple proxy measure of a student's popularity. We can then look at what other student characteristics were positively or negatively associated with a student's popularity. 
+- **year**: year of the survey. Either 2012 or 2014.
+- **birth_cohort**: year of birth for the respondent. survey year minus birth cohort year gives the respondent's age.
+- **marstat**: current marital status of the respondent: never married, married, divorced/separated, widowed.
+- **sex_orient**: Self-reported sexual orientation of the respondent. Because of small numbers, individuals who responded as gay or bisexual have been combined into a single category.
+- **race**: self-reported race of the respondent. In the GSS, we only have the choices of white, black, or other. 
+- **region**: region of the country: Northeast, Midwest, South, West.
+- **women_nopolitics**: Response to a question abot whether women were as suited for politics as men. A value of 1 here means the respondent did not think women were as suited for politics as men, while a value of 0 means that the respondent did think women were as suited for politics as men. This variable is one of the three variables that make up the `women_attitude` variable.
+- **workmom_nohealthy**: response to a question on whether a "working mother can establish just as warm and secure a relationship with her children as a mother who does not work." A value of 1 indicates that the respondent did not think a working mother could establish as warm and secure a relationship and a value of 0 indicates that the respondent though a working mother could. This variable is one of the three variables that make up the `women_attitude` variable.
+- **breadwinnner_model**: response to a question on whether "it is much better for everyone involved if the man is the achiever outside the home and the woman takes care of the home and family." Respondents who said yes to this question are coded as 1 and respondents who said no are coded as 0. This variable is one of the three variables that make up the `women_attitude` variable.
+- **women_attitude**: This variable sums up the values for `women_nopolitics`, `workmom_nohealthy`, and `breadwinner_model` to produce a summary score measure of attitudes toward gender equality. High values here indicate less support for gender equality.
 
-From this full public dataset, I have created an extract with just a few variables for our analysis. Here is a full description of all variables in the dataset that we will use.
-
-- **indegree**: The number of friend nominations received by other students at the same school. This is the measure of popularity that we will use. 
-- **race**: A six-category nominal variable indicating the race that the student best thought described them when asked to choose a single race: white, black, Latino, Asian, American Indian, other. 
-- **sex**: Add Health reports this as a student's "biological" sex. Students were only reported as male or female. 
-- **grade**: current grade of the student as a quantitative variable. 
-- **psuedoGPA**: Students were asked for the most recent letter grade in four course types: math, language arts, science, and math. This variable was constructed by calculating GPA from those responses.
-- **honorsociety**: A true/false variable for whether a student was in honor society or not. 
-- **alcoholuse**: A true/false variable that is true if the student reported drinking at least once or twice a month in the last twelve months. 
-- **smoker**: A true/false variable that is true if student smoked more than 5 cigarettes in the past 30 days. 
-- **bandchoir**: a true/false variable that is true if the student was in band or choir.
-- **academicclub**: a true/false variable that was true if the student was in an academically-oriented club such as math club, book club, etc. 
-- **nsports**: The number of different school sports a student reported participating in. Students who reported more than six sports were top-coded at the value of six. 
-- **parentinc**: Parent's household income measured in $1000's of dollars. 
-
-In the original data, there are missing values for some observations on some of these variables. To simplify our analysis, I have used some advanced techniques that are beyond the scope of our class to impute these missing values. 
+In the original data, there are missing values for some observations on some of these variables. To simplify our analysis, I have used some advanced techniques that are beyond the scope of our class to impute these missing values.

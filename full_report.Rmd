@@ -1,24 +1,18 @@
 ---
-title: "Full Report on Popularity and Substance Use among Adolescents"
+title: "Full Report on Delinquency and Chilhood Hardship"
+author: "Your name here"
 output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
-## This code block will load the data and check for packages that you will need
+## This code block will load the data and packages that you will need
 ## for the project. Click the green "play" button in the upper right to run this
 ## code.
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, error = FALSE,
+                      fig.align = "center", fig.height = 4)
 load("input/nlsy.RData")
-#check for packages
-if(!require("texreg")) {
-    install.packages("texreg", repos="https://cloud.r-project.org")
-}
-if(!require("tinytex")) {
-    install.packages("tinytex", repos="https://cloud.r-project.org")
-}
-if(!require("rmarkdown")) {
-    install.packages("rmarkdown", repos="https://cloud.r-project.org")
-}
+library(ggplot2)
+library(texreg)
 ```
 
 ## Introduction
@@ -27,36 +21,43 @@ State the research question and why it is important to study in your own words.
 
 ## Data
 
-Describe the dataset being used in your own words. Describe and show the distributions of key variables in the analysis. You can copy and past the code chunk below to produce figures. Be sure to change the `figuretemplate` name in each code chunk to a unique name or you will get a duplicate naming error.
+Describe the dataset being used in your own words. Describe and show the distributions of key variables in the analysis. You can copy and past the code chunk below to produce figures.
 
-```{r figuretemplate, echo=FALSE, fig.cap="A Caption"}
+```{r fig.cap="A Caption"}
 #code (e.g. plot, hist, barplot, boxplot) to produce the figure
 ```
 
 ## Results
 
-Describe the results of the full multivariate regression models. You can use the code chunk template below to place the regression results into a nice format using the stargazer package.
-```{r regression_template, echo=FALSE, results='asis'}
-#make some models
+Describe the results of the full multivariate regression models. You can use the code chunk template below to place the regression results into a nice format using the texreg package. This code chunk is initially set to not run when this document is knitted. Change `eval=FALSE` to `eval=TRUE` to allow it to run. 
+
+```{r, results='asis', eval=FALSE}
+#make some models. You may need more or less than four. 
 model1 <- lm()
 model2 <- lm()
 model3 <- lm()
+model4 <- lm()
 
-#change type to "text" for inline test output, change back to "html" for knitting to html
-stargazer(model1, model2, model3,
-          type="html",
-          keep.stat=c("n","rsq"),
-          star.cutoffs = c(0.05,0.01,0.001),
-          #covariate.labels = c("Covariate labels here"), #uncomment to add nice labels
-          dep.var.labels.include = FALSE,
-          dep.var.caption="Friend nominations",
-          title = "Your caption here",
-          notes.append=TRUE,
-          notes.align="l",
-          notes=c("Some notes","Some more notes"),
-          header=FALSE)
+#change from screenreg to texreg for knitting
+screenreg(list(model1, model2, model3, model4),
+       caption="A caption",
+       caption.above = TRUE,
+       #Comment out custom.coef.names until your models are ready for knitting
+       #custom.coef.names = c("Intercept",
+      #                       "names",
+      #                      "of",
+      #                       "each",
+      #                       "line",
+      #                       "of",
+      #                       "table"),
+       custom.gof.names = c("R-squared","N"),
+       digits=2,
+       include.adjrs=FALSE, include.rmse=FALSE,
+       custom.note = "%stars. Standard errors in parenthesis.")
 ```
+
+A discussion of the results of your table should go here, **not** in conclusions. 
 
 ## Conclusions
 
-A paragraph to summarize your results and what you draw from these results regarding your original research question.
+A paragraph to summarize your report and what you draw from these results regarding your original research question.
